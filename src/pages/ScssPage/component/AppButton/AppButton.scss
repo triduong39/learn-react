@@ -1,0 +1,25 @@
+@import '../variable.scss';
+
+button {
+    font-size: 1rem;
+    width: 7em;
+    height: 2.5em;
+    border: none;
+    border-radius: 0.75em;
+    cursor: pointer;
+
+    &.btn-red {
+        color: $whiteColor;
+        background-color: $redColor;
+    }
+
+    &.btn-blue {
+        color: $whiteColor;
+        background-color: $blueColor;
+    }
+
+    &.btn-purple {
+        color: $whiteColor;
+        background-color: $purpleColor;
+    }
+}
