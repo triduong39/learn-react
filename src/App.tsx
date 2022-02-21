@@ -16,11 +16,12 @@ function App() {
         <AppLayout>
             <Routes>
                 <Route path="/" element={<ScssPage />} />
+                <Route path="/css" element={<ScssPage />} />
                 <Route path="/hello" element={<HelloPage />} />
                 <Route path="/class" element={<ClassComponentPage initState={3} />} />
                 <Route path="/func" element={<FunctionalComponentPage initState={4} />} />
                 <Route path="/context" element={<ContextPage />} />
-                <Route path="/redux" element={<ReduxPage />} />
+                <Route path="/redux/*" element={<ReduxPage />} />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
         </AppLayout>
