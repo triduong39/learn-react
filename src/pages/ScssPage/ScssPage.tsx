@@ -10,6 +10,9 @@ export default function ScssPage() {
     const handleClick = (text: string) => {
         alert(`You clicked the button ${text} at Scss page`);
     };
+    const handleSwitch = () => {
+        console.log('you switched the switch!');
+    };
     return (
         <Space direction="vertical" className="main" size={'middle'}>
             <Title level={3}>
@@ -22,10 +25,14 @@ export default function ScssPage() {
                 </AppButton>
             </Space>
             <Space>
-                <AppSwitch checked readOnly />
-                <AppSwitch variant="round" checked readOnly />
-                <AppSwitch />
-                <AppSwitch variant="round" />
+                <AppSwitch checked readOnly onChange={handleSwitch} />
+                <AppSwitch variant="round" checked readOnly onChange={handleSwitch} />
+                <AppSwitch onChange={handleSwitch} />
+                <AppSwitch variant="round" onChange={handleSwitch} />
+                <AppSwitch color="red" onChange={handleSwitch} />
+                <AppSwitch variant="round" color="red" onChange={handleSwitch} />
+                <AppSwitch color="purple" onChange={handleSwitch} />
+                <AppSwitch variant="round" color="purple" onChange={handleSwitch} />
             </Space>
         </Space>
     );
