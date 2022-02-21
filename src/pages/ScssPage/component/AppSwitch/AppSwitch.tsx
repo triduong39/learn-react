@@ -3,11 +3,12 @@ import './AppSwitch.scss';
 
 type InputProps = {
     variant?: 'round' | 'square';
+    color?: 'blue' | 'red' | 'purple';
 } & React.ComponentProps<'input'>;
 
-export default function AppSwitch({ variant = 'square', ...props }: InputProps) {
+export default function AppSwitch({ variant = 'square', color = 'blue', ...props }: InputProps) {
     return (
-        <label className="switch">
+        <label className={`switch swh-${color}`}>
             <input type="checkbox" {...props} />
             <span className={`slider ${variant}`}></span>
         </label>

@@ -1,13 +1,17 @@
 import * as React from 'react';
+import { Route, Routes } from 'react-router-dom';
 
-import ChildrenOne from './component/ChildrenOne';
-import ChildrenTwo from './component/ChildrenTwo';
+import ExamplePage from './page/ExamplePage';
+import ThunkPage from './page/ThunkPage';
 
 export default function ReduxApp() {
     return (
         <>
-            <ChildrenOne />
-            <ChildrenTwo />
+            <Routes>
+                <Route path="/" element={<ExamplePage />} />
+                <Route path="example" element={<ExamplePage />} />
+                <Route path="thunk" element={<ThunkPage />} />
+            </Routes>
         </>
     );
 }
