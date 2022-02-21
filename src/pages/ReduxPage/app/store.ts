@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import pokemonReducer from '../features/pokemonSlice';
 import counterReducer from '../features/userSlice';
 
 export const store = configureStore({
     reducer: {
         user: counterReducer,
+        pokemon: pokemonReducer,
     },
 });
 
