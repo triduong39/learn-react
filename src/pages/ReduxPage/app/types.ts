@@ -15,5 +15,7 @@ export type pokemon = {
 
 export type pokemonState = {
     status: 'idle' | 'pending' | 'success' | 'error';
-    pokemon?: pokemon;
+    pokemonInput: string;
+    pokemons: pokemon[];
+    error: string;
 };

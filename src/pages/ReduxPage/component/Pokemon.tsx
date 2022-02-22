@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Image, Space, Typography } from 'antd';
+import { Card, Image, Space, Typography } from 'antd';
 import { pokemon } from '../app/types';
 
 const { Text, Title } = Typography;
@@ -10,15 +10,13 @@ interface IRenderUserProps {
 
 export default function Pokemon({ data }: IRenderUserProps) {
     return (
-        <Space direction="vertical">
-            <Title>{data.name}</Title>
-            <Image src={data.img} />
-            <Text>species: {data.species}</Text>
-            <Space>
+        <Card style={{ width: 200 }} cover={<Image alt="pokemon" src={data.img} />}>
+            <Space direction="vertical" align="center" style={{ width: '100%' }}>
+                <Title level={3}> {data.name}</Title>
                 <Text>hp: {data.hp}</Text>
                 <Text>atack: {data.atack}</Text>
                 <Text>defense: {data.defense}</Text>
             </Space>
-        </Space>
+        </Card>
     );
 }
