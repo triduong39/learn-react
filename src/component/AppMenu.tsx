@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useMatch } from 'react-router-dom';
 
 import { Menu } from 'antd';
 import {
@@ -13,7 +13,7 @@ import {
 import SubMenu from 'antd/lib/menu/SubMenu';
 
 type menuItem = {
-    key: number;
+    key: string;
     name: string;
     linkTo: string;
     icon: React.ReactNode;
@@ -26,18 +26,18 @@ type subMenu = {
 };
 
 const routes: Array<menuItem | subMenu> = [
-    { key: 1, name: 'Scss page', linkTo: '/css', icon: <UserOutlined /> },
-    { key: 2, name: 'Hello world page', linkTo: '/hello', icon: <VideoCameraOutlined /> },
-    { key: 3, name: 'Class page', linkTo: '/class', icon: <UploadOutlined /> },
-    { key: 4, name: 'Function page', linkTo: '/func', icon: <CheckCircleOutlined /> },
-    { key: 5, name: 'Context page', linkTo: '/context', icon: <HighlightOutlined /> },
+    { key: 'css', name: 'Scss page', linkTo: '/css', icon: <UserOutlined /> },
+    { key: 'hello', name: 'Hello world page', linkTo: '/hello', icon: <VideoCameraOutlined /> },
+    { key: 'class', name: 'Class page', linkTo: '/class', icon: <UploadOutlined /> },
+    { key: 'func', name: 'Function page', linkTo: '/func', icon: <CheckCircleOutlined /> },
+    { key: 'context', name: 'Context page', linkTo: '/context', icon: <HighlightOutlined /> },
     {
-        key: 'sub1',
+        key: 'redux',
         name: 'Redux page',
         icon: <PlayCircleOutlined />,
         children: [
-            { key: 7, name: 'Example', linkTo: '/redux/example', icon: <PlayCircleOutlined /> },
-            { key: 8, name: 'Thunk', linkTo: '/redux/thunk', icon: <PlayCircleOutlined /> },
+            { key: 'example', name: 'Example', linkTo: '/redux/example', icon: <PlayCircleOutlined /> },
+            { key: 'thunk', name: 'Thunk', linkTo: '/redux/thunk', icon: <PlayCircleOutlined /> },
         ],
     },
 ];
@@ -63,18 +63,31 @@ function findRoute(routes: (menuItem | subMenu)[], arrayPathname: string[]) {
 }
 
 export default function AppMenu() {
-    const location = useLocation();
-    const { pathname } = location;
-    const arrayPathname = pathname.split('/');
+    const matchOneArgument = useMatch({
+        path: '/:page',
+    });
+    const matchTwoArgument = useMatch({
+        path: '/:page/:sub',
+    });
 
-    const routeMatch = findRoute(routes, arrayPathname);
+    let defaultOpenKeys: string[] = [];
+    let defaultSelectedKeys: string[] = [];
+
+    if (matchOneArgument) {
+        defaultSelectedKeys = [matchOneArgument.params.page || ''];
+    } else if (matchTwoArgument) {
+        defaultOpenKeys = [matchTwoArgument.params.page || ''];
+        defaultSelectedKeys = [matchTwoArgument.params.sub || ''];
+    }
 
     return (
         <Menu
             theme="dark"
             mode="inline"
-            defaultOpenKeys={['sub1']}
-            defaultSelectedKeys={routeMatch?.key ? [`${routeMatch.key}`] : ['1']}
+            defaultOpenKeys={defaultOpenKeys}
+            defaultSelectedKeys={defaultSelectedKeys}
+
+            // defaultSelectedKeys={routeMatch?.key ? [`${routeMatch.key}`] : ['1']}
         >
             {routes.map((route) =>
                 'children' in route ? (
