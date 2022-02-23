@@ -1,11 +1,9 @@
 import * as React from 'react';
-
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { Layout } from 'antd';
-import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import AppMenu from './AppMenu';
 
 const { Header, Sider, Content } = Layout;
-
 export interface IAppLayoutProps {
     children: React.ReactNode;
 }

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Space, Typography } from 'antd';
 import { user } from './UserProvider';
-
 const { Text } = Typography;
 
 interface IRenderUserProps {

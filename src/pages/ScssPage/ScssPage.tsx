@@ -1,6 +1,5 @@
 import * as React from 'react';
-
-import { Typography, Space } from 'antd';
+import { Space, Typography } from 'antd';
 import AppButton from './component/AppButton/AppButton';
 import AppSwitch from './component/AppSwitch/AppSwitch';
 

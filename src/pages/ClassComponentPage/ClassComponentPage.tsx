@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Typography, Space } from 'antd';
+import { Button, Space, Typography } from 'antd';
 const { Title } = Typography;
 
 export interface IAppProps {

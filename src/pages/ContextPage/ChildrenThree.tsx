@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Input, Space, Typography } from 'antd';
-
-import { useUser } from './UserProvider';
 import RenderUser from './RenderUser';
+import { useUser } from './UserProvider';
+
 const { Title } = Typography;
 
 export default function ChildrenThree() {
