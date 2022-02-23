@@ -1,6 +1,4 @@
-import * as React from "react";
 import { Typography } from "antd";
-
 import ChildrenOne from "./ChildrenOne";
 import ChildrenTwo from "./ChildrenTwo";
 import UserProvider from "./UserProvider";

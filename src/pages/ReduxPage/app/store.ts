@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import createSagaMiddleware from "redux-saga";
 import pokemonReducer from "../features/pokemon/pokemonSlice";
 import counterReducer from "../features/user/userSlice";
-import createSagaMiddleware from "redux-saga";
 import rootSaga from "./rootSaga";
 
 const sagaMiddleware = createSagaMiddleware();

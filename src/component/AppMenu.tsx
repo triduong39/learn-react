@@ -1,16 +1,15 @@
-import * as React from "react";
-import { Link, useMatch } from "react-router-dom";
-
-import { Menu } from "antd";
 import {
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
   CheckCircleOutlined,
   HighlightOutlined,
   PlayCircleOutlined,
+  UploadOutlined,
+  UserOutlined,
+  VideoCameraOutlined,
 } from "@ant-design/icons";
+import { Menu } from "antd";
 import SubMenu from "antd/lib/menu/SubMenu";
+import * as React from "react";
+import { Link, useMatch } from "react-router-dom";
 
 type menuItem = {
   key: string;

@@ -1,15 +1,13 @@
-import * as React from "react";
 import { Alert, Space, Spin, Typography } from "antd";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../app/store";
-
 import Pokemon from "../component/Pokemon";
+import PokemonCache from "../component/PokemonCache";
+import PokemonForm from "../component/PokemonForm";
 import {
   fetchPokemonByName,
   setPokemonInput,
 } from "../features/pokemon/pokemonSlice";
-import PokemonForm from "../component/PokemonForm";
-import PokemonCache from "../component/PokemonCache";
 
 const { Title } = Typography;
 

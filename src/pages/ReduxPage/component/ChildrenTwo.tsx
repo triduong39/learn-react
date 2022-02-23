@@ -1,9 +1,9 @@
-import * as React from "react";
 import { Input, Space, Typography } from "antd";
+import * as React from "react";
+import { useAppDispatch, useAppSelector } from "../app/store";
+import { changeName } from "../features/user/userSlice";
 import ChildrenThree from "./ChildrenThree";
 import RenderUser from "./RenderUser";
-import { changeName } from "../features/user/userSlice";
-import { useAppDispatch, useAppSelector } from "../app/store";
 
 const { Title } = Typography;
 

@@ -1,5 +1,5 @@
-import * as React from "react";
 import { Input, Space, Typography } from "antd";
+import * as React from "react";
 import { useAppDispatch, useAppSelector } from "../app/store";
 import { changeEmail } from "../features/user/userSlice";
 import RenderUser from "./RenderUser";
