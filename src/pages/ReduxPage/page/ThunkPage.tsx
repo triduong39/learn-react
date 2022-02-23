@@ -23,10 +23,12 @@ export default function ThunkPage() {
     };
     const handleInputChange = (pokemonName: string) => {
         setPokemonInput(pokemonName);
+        setPokemonError(false);
     };
 
     const handleItemClick = (pokemonName: string) => {
         setPokemonInput(pokemonName);
+        setPokemonError(false);
     };
 
     const pokemonData = pokemons.find((pokemon) => pokemon.name === pokemonInput);
