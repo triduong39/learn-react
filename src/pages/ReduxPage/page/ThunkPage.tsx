@@ -1,28 +1,32 @@
 import * as React from 'react';
 import { Alert, Space, Spin, Typography } from 'antd';
-import { useDispatch } from 'react-redux';
-import { useAppSelector } from '../app/store';
+import { useAppDispatch, useAppSelector } from '../app/store';
 import Pokemon from '../component/Pokemon';
 import PokemonCache from '../component/PokemonCache';
 import PokemonForm from '../component/PokemonForm';
-import { fetchPokemonByName, setPokemonInput } from '../features/pokemon/pokemonSlice';
+import { fetchPokemonByName } from '../features/pokemon/pokemonSlice';
 
 const { Title } = Typography;
 
 export default function ThunkPage() {
-    const dispatch = useDispatch();
-
-    const { status, pokemons, pokemonInput, error } = useAppSelector((state) => state.pokemon);
+    const [pokemonInput, setPokemonInput] = React.useState('');
+    const [pokemonError, setPokemonError] = React.useState(false);
+    const dispatch = useAppDispatch();
+    const { isLoading, pokemons } = useAppSelector((state) => state.pokemon);
 
     const handleSubmit = () => {
-        dispatch(fetchPokemonByName());
+        dispatch(fetchPokemonByName(pokemonInput))
+            .unwrap()
+            .catch(() => {
+                setPokemonError(true);
+            });
+    };
+    const handleInputChange = (pokemonName: string) => {
+        setPokemonInput(pokemonName);
     };
 
-    const handleInputChange = (pokemonName: string) => {
-        dispatch(setPokemonInput(pokemonName));
-    };
     const handleItemClick = (pokemonName: string) => {
-        dispatch(setPokemonInput(pokemonName));
+        setPokemonInput(pokemonName);
     };
 
     const pokemonData = pokemons.find((pokemon) => pokemon.name === pokemonInput);
@@ -32,9 +36,9 @@ export default function ThunkPage() {
             <Title level={1}>Search your pokemon!</Title>
             <PokemonForm inputValue={pokemonInput} handleInputChange={handleInputChange} handleSubmit={handleSubmit} />
             <PokemonCache data={pokemons} handleItemClick={handleItemClick} />
-            {status === 'pending' && <Spin tip="Loading..." />}
-            {status === 'success' && pokemonData && <Pokemon data={pokemonData} />}
-            {status === 'error' && <Alert message={error} type="error" />}
+            {isLoading && <Spin tip="Loading..." />}
+            {!isLoading && pokemonData && <Pokemon data={pokemonData} />}
+            {pokemonError && <Alert message={`Cant fetch pokemon name: ${pokemonInput}`} type="error" />}
         </Space>
     );
 }

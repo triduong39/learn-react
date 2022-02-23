@@ -14,8 +14,6 @@ export type pokemon = {
 };
 
 export type pokemonState = {
-    status: 'idle' | 'pending' | 'success' | 'error';
-    pokemonInput: string;
+    isLoading: boolean;
     pokemons: pokemon[];
-    error: string;
 };
