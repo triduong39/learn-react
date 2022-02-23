@@ -67,6 +67,12 @@ const routes: Array<menuItem | subMenu> = [
                 linkTo: '/redux/thunk',
                 icon: <PlayCircleOutlined />,
             },
+            {
+                key: 'saga',
+                name: 'Saga',
+                linkTo: '/redux/saga',
+                icon: <PlayCircleOutlined />,
+            },
         ],
     },
 ];

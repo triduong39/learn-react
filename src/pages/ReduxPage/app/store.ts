@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
-import pokemonReducer from '../features/pokemon/pokemonSlice';
+import pokemonSagaReducer from '../features/pokemonSaga/pokemonSagaSlice';
+import pokemonThunkReducer from '../features/pokemonThunk/pokemonThunkSlice';
 import counterReducer from '../features/user/userSlice';
 import rootSaga from './rootSaga';
 
@@ -10,7 +11,8 @@ const sagaMiddleware = createSagaMiddleware();
 export const store = configureStore({
     reducer: {
         user: counterReducer,
-        pokemon: pokemonReducer,
+        pokemonThunk: pokemonThunkReducer,
+        pokemonSaga: pokemonSagaReducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(sagaMiddleware),
 });
