@@ -3,8 +3,6 @@ import { Alert, Space, Spin, Typography } from "antd";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../app/store";
 
-const { Title } = Typography;
-
 import Pokemon from "../component/Pokemon";
 import {
   fetchPokemonByName,
@@ -12,6 +10,8 @@ import {
 } from "../features/pokemon/pokemonSlice";
 import PokemonForm from "../component/PokemonForm";
 import PokemonCache from "../component/PokemonCache";
+
+const { Title } = Typography;
 
 export default function ThunkPage() {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ export default function ThunkPage() {
   );
 
   const handleSubmit = () => {
-    dispatch(fetchPokemonByName(pokemonInput));
+    dispatch(fetchPokemonByName());
   };
 
   const handleInputChange = (pokemonName: string) => {

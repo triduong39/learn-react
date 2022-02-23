@@ -3,8 +3,11 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export const fetchPokemonByName = createAsyncThunk(
   "pokemon/fetchByName",
-  async (name: string) => {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+  async (_, { getState }: any) => {
+    const { pokemonInput } = getState().pokemon;
+    const response = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/${pokemonInput}`
+    );
     const data = await response.json();
     return data;
   }
