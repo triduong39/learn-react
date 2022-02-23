@@ -1,7 +1,8 @@
+import * as React from 'react';
 export interface IHelloWorldProps {
-  text?: string;
+    text?: string;
 }
 
 export default function HelloWorld({ text }: IHelloWorldProps) {
-  return <h1>Hello {text === "" ? "Tri duong" : text}!</h1>;
+    return <h1>Hello {text === '' ? 'Tri duong' : text}!</h1>;
 }

@@ -1,14 +1,7 @@
-<<<<<<< HEAD
-import { Input, Space, Typography } from "antd";
-import * as React from "react";
-import HelloWorld from "./Component/HelloWorld";
-
-=======
 import * as React from 'react';
 import { Input, Space, Typography } from 'antd';
-
 import HelloWorld from './Component/HelloWorld';
->>>>>>> 0ab59452018d3e52da1a9d0a2833dcb1cd531ba6
+
 const { Title } = Typography;
 
 export default function HelloPage() {

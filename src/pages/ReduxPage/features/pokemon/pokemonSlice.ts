@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { pokemonState } from "../../app/types";
-=======
-import { pokemonState } from '../../app/types';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
->>>>>>> 0ab59452018d3e52da1a9d0a2833dcb1cd531ba6
+import { pokemonState } from '../../app/types';
 
 export const fetchPokemonByName = createAsyncThunk('pokemon/fetchByName', async (_, { getState }: any) => {
     const { pokemonInput } = getState().pokemon;
