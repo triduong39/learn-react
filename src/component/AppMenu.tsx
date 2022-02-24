@@ -75,6 +75,12 @@ const routes: Array<menuItem | subMenu> = [
             },
         ],
     },
+    {
+        key: 'todo',
+        name: 'Todo page',
+        linkTo: '/todo',
+        icon: <HighlightOutlined />,
+    },
 ];
 
 export default function AppMenu() {

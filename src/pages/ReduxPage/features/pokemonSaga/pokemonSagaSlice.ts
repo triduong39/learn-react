@@ -11,8 +11,7 @@ export const pokemonSagaSlice = createSlice({
     name: 'pokemonSaga',
     initialState,
     reducers: {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        fetchPokemon: (state, _: PayloadAction<string>) => {
+        fetchPokemon: (state, _action: PayloadAction<string>) => {
             state.isLoading = true;
         },
         fetchPokemonSuccess: (state, action: PayloadAction<pokemonDataFetch>) => {

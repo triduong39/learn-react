@@ -9,6 +9,7 @@ import FunctionalComponentPage from './pages/FunctionalComponentPage/FunctionalC
 import HelloPage from './pages/HelloPage/HelloPage';
 import ReduxPage from './pages/ReduxPage/ReduxPage';
 import ScssPage from './pages/ScssPage/ScssPage';
+import TodoPage from './pages/TodoPage/TodoPage';
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/func" element={<FunctionalComponentPage initState={4} />} />
                 <Route path="/context" element={<ContextPage />} />
                 <Route path="/redux/*" element={<ReduxPage />} />
+                <Route path="/todo/*" element={<TodoPage />} />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
         </AppLayout>
