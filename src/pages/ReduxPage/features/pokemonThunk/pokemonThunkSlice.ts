@@ -13,8 +13,8 @@ const initialState: pokemonState = {
     pokemons: [],
 };
 
-export const counterSlice = createSlice({
-    name: 'pokemon',
+export const pokemonThunkSlice = createSlice({
+    name: 'pokemonThunk',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
@@ -45,5 +45,5 @@ export const counterSlice = createSlice({
     },
 });
 
-const pokemonReducer = counterSlice.reducer;
-export default pokemonReducer;
+const pokemonThunkReducer = pokemonThunkSlice.reducer;
+export default pokemonThunkReducer;

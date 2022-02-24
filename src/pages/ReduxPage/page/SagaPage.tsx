@@ -4,24 +4,21 @@ import { useAppDispatch, useAppSelector } from '../app/store';
 import Pokemon from '../component/Pokemon';
 import PokemonCache from '../component/PokemonCache';
 import PokemonForm from '../component/PokemonForm';
-import { fetchPokemonByName } from '../features/pokemonThunk/pokemonThunkSlice';
+import { fetchPokemon } from '../features/pokemonSaga/pokemonSagaSlice';
 
 const { Title, Text } = Typography;
 const { Panel } = Collapse;
 
-export default function ThunkPage() {
+export default function SagaPage() {
     const [pokemonInput, setPokemonInput] = React.useState('');
     const [pokemonError, setPokemonError] = React.useState(false);
     const dispatch = useAppDispatch();
-    const { isLoading, pokemons } = useAppSelector((state) => state.pokemonThunk);
+    const { isLoading, pokemons } = useAppSelector((state) => state.pokemonSaga);
 
     const handleSubmit = () => {
-        dispatch(fetchPokemonByName(pokemonInput))
-            .unwrap()
-            .catch(() => {
-                setPokemonError(true);
-            });
+        dispatch(fetchPokemon(pokemonInput));
     };
+
     const handleInputChange = (pokemonName: string) => {
         setPokemonInput(pokemonName);
         setPokemonError(false);
@@ -37,7 +34,6 @@ export default function ThunkPage() {
     return (
         <Space size={'middle'} direction="vertical" style={{ width: '100%' }}>
             <Title level={1}>Search your pokemon!</Title>
-
             <Collapse>
                 <Panel header="Todo" key="1">
                     <Space size={'middle'} direction="vertical">
@@ -49,8 +45,8 @@ export default function ThunkPage() {
                             component
                         </Text>
                         <Text>
-                            Còn về vấn đề <Text type="warning">handling error</Text> khi fetch ko thành công thì may mắn
-                            là redux toolkit thunk cho .unwrap() ra ngoài nên có thể đặt state error vào component
+                            Còn về vấn đề <Text type="warning">handling error</Text> khi fetch ko thành công thì chưa
+                            biết cách giải quyết.
                         </Text>
                         <Text>
                             Ta có thể sử dụng <Text type="warning">react-query</Text> để fetch dữ liệu thay cho việc sử
@@ -59,7 +55,6 @@ export default function ThunkPage() {
                     </Space>
                 </Panel>
             </Collapse>
-
             <PokemonForm inputValue={pokemonInput} handleInputChange={handleInputChange} handleSubmit={handleSubmit} />
             <PokemonCache data={pokemons} handleItemClick={handleItemClick} />
             {isLoading && <Spin tip="Loading..." />}
