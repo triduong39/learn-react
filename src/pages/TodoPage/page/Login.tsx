@@ -5,8 +5,9 @@ import WorkLogo from '../logo/work.png';
 import styled from 'styled-components';
 import FormLogin from '../component/FormLogin';
 import { onFinishFailedType, onFinishType } from '../app/types';
+import { useAuth } from '../app/AuthProvider';
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 const AppImg = styled(Image)`
     user-select: none;
     -webkit-user-drag: none;
@@ -17,8 +18,10 @@ const AppTitle = styled(Title)`
 `;
 
 export default function LoginPage() {
-    const onFinish = (values: onFinishType) => {
-        console.log('Success:', values);
+    const { signIn, error } = useAuth();
+
+    const onFinish = ({ username, password }: onFinishType) => {
+        signIn(username, password);
     };
 
     const onFinishFailed = (errorInfo: onFinishFailedType) => {
@@ -28,7 +31,8 @@ export default function LoginPage() {
         <Card alignItems="center" justifyContent="space-between">
             <AppImg width={300} src={WorkLogo} preview={false} />
             <AppTitle>Tudu</AppTitle>
-            <FormLogin onFinish={onFinish} onFinishFailed={onFinishFailed} />
+            {error && <Text type="danger">{error}</Text>}
+            <FormLogin error={error} onFinish={onFinish} onFinishFailed={onFinishFailed} />
         </Card>
     );
 }

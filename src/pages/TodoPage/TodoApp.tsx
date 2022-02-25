@@ -6,5 +6,5 @@ import { AppWraper } from './component/AppWraper.styled';
 
 export default function TodoApp() {
     const { isLogged } = useAuth();
-    return <AppWraper>{isLogged ? <Login /> : <Home />}</AppWraper>;
+    return <AppWraper>{isLogged ? <Home /> : <Login />}</AppWraper>;
 }
