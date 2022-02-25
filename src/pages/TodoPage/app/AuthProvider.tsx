@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { login } from '../api/userApi';
 import { authContextType, AuthProviderProps, user } from './types';
 
 const AuthContext = React.createContext<authContextType | null>(null);
@@ -13,14 +14,21 @@ export function useAuth() {
 
 export function AuthProvider({ children }: AuthProviderProps) {
     const [currentUser, setCurrentUser] = React.useState<user>();
+    const [error, setError] = React.useState('');
 
-    function signIn(userName: string, password: string) {
-        console.log(userName);
-        console.log(password);
-        setCurrentUser({ userName, password });
+    async function signIn(userName: string, password: string) {
+        setError('');
+        const res = await login(userName, password);
+
+        if (res.data?.data?.login) {
+            setCurrentUser({ id: res.data.data.login, userName, password });
+        } else {
+            setError(res.data?.errors?.[0]?.message || 'something went wrong!');
+        }
     }
 
     function signOut() {
+        setError('');
         setCurrentUser(undefined);
     }
 
@@ -29,6 +37,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         signIn,
         signOut,
         isLogged: Boolean(currentUser),
+        error,
     };
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

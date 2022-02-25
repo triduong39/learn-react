@@ -3,9 +3,7 @@ import { Button, ButtonProps } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 
-type ButtonAddProps = {
-    onClick: () => void;
-} & ButtonProps;
+type ButtonAddProps = ButtonProps;
 
 const ButtonAddTodo = styled(ButtonAdd)`
     position: absolute;
@@ -22,8 +20,8 @@ const ButtonAddTodo = styled(ButtonAdd)`
     }
 `;
 
-function ButtonAdd({ onClick, ...props }: ButtonAddProps) {
-    return <Button type="primary" shape="circle" onClick={onClick} icon={<PlusOutlined />} {...props} />;
+function ButtonAdd({ ...props }: ButtonAddProps) {
+    return <Button type="primary" shape="circle" icon={<PlusOutlined />} {...props} />;
 }
 
 export default ButtonAddTodo;
